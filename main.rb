@@ -36,6 +36,7 @@ if user_choice == 2
     file.close
   end
   add_thing_to_clothes(dress_name, dress_type, dress_min, dress_max)
+  exit
 end
 
 puts "Сколько градусов за окном? (можно с минусом)"

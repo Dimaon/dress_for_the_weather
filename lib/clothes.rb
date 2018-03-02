@@ -73,7 +73,7 @@ class Clothes
   end
 
   # Одна случайная вещь в категории
-  def name_of_one_thing(body_part_things)
+  def thing_info(body_part_things)
     sample_thing = body_part_things.compact.sample
     if sample_thing
       sample_thing.dress_complect
@@ -84,11 +84,11 @@ class Clothes
 
   def things_complect
     {
-        head_dress: name_of_one_thing(head_things),
-        body_dress: name_of_one_thing(body_things),
-        foot_dress: name_of_one_thing(foot_things),
-        feet_dress: name_of_one_thing(feet_things),
-        other_dress: name_of_one_thing(other_things)
+        head_dress: thing_info(head_things),
+        body_dress: thing_info(body_things),
+        foot_dress: thing_info(foot_things),
+        feet_dress: thing_info(feet_things),
+        other_dress: thing_info(other_things)
     }
   end
 end
