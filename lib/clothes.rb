@@ -1,22 +1,14 @@
 class Clothes
-  NO_THING = "Нет подходящей вещи в вашем гардеробе"
-  attr_reader :all_things
+  NO_THING = "Нет вещи"
+  HEAD_DRESS = "Головной убор"
+  BODY_DRESS = "Верхняя одежда"
+  FOOT_DRESS = "Штаны"
+  FEET_DRESS = "Обувь"
+
   def initialize(directory_path, temp)
     default_thing
     get_things_from_directory(directory_path)
     @temp = temp
-  end
-
-  def default_thing
-    default_file = "./data/default.txt"
-    unless File.exist?(default_file)
-      file = File.new(default_file, "a")
-      file.puts(NO_THING)
-      file.puts(NO_THING)
-      file.print("(-100, 100)")
-      file.close
-    end
-    Thing.new(default_file)
   end
 
   def get_things_from_directory(directory_path)
@@ -35,38 +27,37 @@ class Clothes
     all_things_by_temp.compact
   end
 
-  def head_things
+  def things_by_type(thing_type)
     all_things_by_temp.map do |thing|
-      thing if thing.dress_type.include?("Головной убор")
+      thing if thing.dress_type.include?(thing_type)
     end
+  end
+
+  def head_things
+    things_by_type(HEAD_DRESS)
   end
 
   def body_things
-    all_things_by_temp.map do |thing|
-      thing if thing.dress_type.include?("Верхняя одежда")
-    end
+    things_by_type(BODY_DRESS)
   end
 
   def foot_things
-    all_things_by_temp.map do |thing|
-      thing if thing.dress_type.include?("Штаны")
-    end
+    things_by_type(FOOT_DRESS)
   end
 
-  # Массив, обьектов содержащий обувь
   def feet_things
-    all_things_by_temp.map do |thing|
-      thing if thing.dress_type.include?("Обувь")
-    end
+    things_by_type(FEET_DRESS)
   end
 
   def other_things
     # Для остальных категорий
     all_things_by_temp.map do |thing|
-      unless  thing.dress_type.include?("Головной убор") ||
-              thing.dress_type.include?("Верхняя одежда") ||
-              thing.dress_type.include?("Штаны") ||
-              thing.dress_type.include?("Обувь")
+      # Необходимо оптимизировать
+      unless  thing.dress_type.include?(HEAD_DRESS) ||
+              thing.dress_type.include?(BODY_DRESS) ||
+              thing.dress_type.include?(FOOT_DRESS) ||
+              thing.dress_type.include?(FEET_DRESS) ||
+              thing.dress_type.include?(NO_THING)
         thing
       end
     end
@@ -78,10 +69,11 @@ class Clothes
     if sample_thing
       sample_thing.dress_complect
     else
+      # добавиь тип одежды, который отсувтсвует
       NO_THING
     end
   end
-
+# Вывести в какой категории отсутсвует вещь
   def things_complect
     {
         head_dress: thing_info(head_things),
@@ -90,5 +82,17 @@ class Clothes
         feet_dress: thing_info(feet_things),
         other_dress: thing_info(other_things)
     }
+  end
+# Создаем предмет одежды по-умолчанию
+  def default_thing
+    default_file = "./data/default.txt"
+    unless File.exist?(default_file)
+      file = File.new(default_file, "a")
+      file.puts(NO_THING)
+      file.puts(NO_THING)
+      file.print("(-100, 100)")
+      file.close
+    end
+    Thing.new(default_file)
   end
 end

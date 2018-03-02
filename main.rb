@@ -52,5 +52,6 @@ puts clothes.things_complect[:head_dress]
 puts clothes.things_complect[:body_dress]
 puts clothes.things_complect[:foot_dress]
 puts clothes.things_complect[:feet_dress]
-puts "Возможно вам также пригодиться:"
-puts clothes.things_complect[:other_dress]
+other_dress = clothes.things_complect[:other_dress]
+# Тут тоже надо оптимизировать, но голова уже не варит
+puts "Возможно вам также пригодиться: #{other_dress}" if other_dress != "Нет вещи"
