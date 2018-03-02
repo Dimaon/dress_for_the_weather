@@ -24,7 +24,7 @@ if user_choice == 2
     dress_min, dress_max = dress_max, dress_min
   end
   dress_temp = (dress_min..dress_max)
-
+  # Доделать. Возможно вынести в отдельный класс для добавления вещи
   # Создаем файл и добавляем вещь
   def add_thing_to_clothes(dress_name, dress_type, dress_min, dress_max)
     file_name = "./data/" + "thing_" + Time.now.strftime("%Y-%m-%d %H:%M:%S") + ".txt"
@@ -53,5 +53,5 @@ puts clothes.things_complect[:body_dress]
 puts clothes.things_complect[:foot_dress]
 puts clothes.things_complect[:feet_dress]
 other_dress = clothes.things_complect[:other_dress]
-# Тут тоже надо оптимизировать, но голова уже не варит
+# Доделать. Тут тоже надо оптимизировать, но голова уже не варит
 puts "Возможно вам также пригодиться: #{other_dress}" if other_dress != "Нет вещи"

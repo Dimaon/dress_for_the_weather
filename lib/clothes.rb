@@ -52,7 +52,7 @@ class Clothes
   def other_things
     # Для остальных категорий
     all_things_by_temp.map do |thing|
-      # Необходимо оптимизировать
+      # Доделать. Необходимо оптимизировать
       unless  thing.dress_type.include?(HEAD_DRESS) ||
               thing.dress_type.include?(BODY_DRESS) ||
               thing.dress_type.include?(FOOT_DRESS) ||
@@ -73,7 +73,7 @@ class Clothes
       NO_THING
     end
   end
-# Вывести в какой категории отсутсвует вещь
+# Доделать. Вывести в какой категории отсутсвует вещь
   def things_complect
     {
         head_dress: thing_info(head_things),

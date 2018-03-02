@@ -12,6 +12,7 @@ class Thing
     @dress_name = thing[0]
     @dress_type = thing[1]
     # @dress_temp содержит строку (-20, -5), надо её преобразовать в диапазон
+    # Доделать. Необходимо оптимизировать
     @dress_temp = thing[2].delete("(").delete(")").split(",").inject { |s,e| s.to_i..e.to_i }
     file.close
     return thing
@@ -19,9 +20,5 @@ class Thing
 
   def dress_complect
     "#{@dress_name} (#{dress_type}) #{@dress_temp}"
-  end
-
-  def add_thing_to_clothes
-    # Добавляем вещь в гардероб
   end
 end
