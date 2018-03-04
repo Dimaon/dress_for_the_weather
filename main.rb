@@ -67,6 +67,3 @@ puts "Предлагаем сегодня надеть:"
 clothes_to_wear.each do |thing|
   puts thing if thing != "Нет вещи"
 end
-
-# Доделать. Тут тоже надо оптимизировать, но голова уже не варит
-# puts "Возможно вам также пригодиться: #{other_dress}" if other_dress != "Нет вещи"
