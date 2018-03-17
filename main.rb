@@ -1,4 +1,3 @@
-require_relative "lib/wardrobe"
 require_relative "lib/clothing_item"
 
 dir_path = __dir__ + "/data/*.txt"
@@ -14,6 +13,11 @@ suitable_clothes =
     clothing_items.select do |clothing_item|
       clothing_item.suitable_by_temperature?(user_input)
     end
+
+if suitable_clothes.empty?
+  puts "У вас нет подходящих вещей"
+  exit
+end
 
 # Получаем хэш сгруппированный по типу шмотки
 suitable_clothes_by_type = suitable_clothes.group_by(&:type)
